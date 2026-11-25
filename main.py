@@ -1,28 +1,25 @@
 #!/usr/bin/env python3
-"""news-image-20261124 entry: emit the 24 November 2026 front page.
+"""Copy the rendered front page to the grader's output folder.
 
-draw.py renders the page at build time and the finished image ships beside
-this file as entry.png. At grade time this program only copies that file
-into the grader's output directory, so repeated runs always agree byte
-for byte. Standard library only; nothing is fetched or drawn here.
-
-Try it:  mkdir -p out && MAKEFUN_OUTPUT_DIR=out python3 main.py
+The picture itself is produced by draw.py in this same directory.
+This script only moves the finished PNG where the grader expects it:
+an output directory given on the command line, in OUTPUT_DIR, or
+"/output" by default.
 """
+
 import os
 import shutil
-from pathlib import Path
+import sys
 
-ENTRY = Path(__file__).resolve().parent / "entry.png"
+HERE = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.join(HERE, "entry.png")
 
+if len(sys.argv) > 1:
+    dest_dir = sys.argv[1]
+else:
+    dest_dir = os.environ.get("OUTPUT_DIR", "/output")
 
-def run():
-    target_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
-    target_dir.mkdir(parents=True, exist_ok=True)
-    target = target_dir / "entry.png"
-    shutil.copyfile(ENTRY, target)
-    if target.stat().st_size != ENTRY.stat().st_size:
-        raise SystemExit("entry.png did not copy completely")
-
-
-if __name__ == "__main__":
-    run()
+os.makedirs(dest_dir, exist_ok=True)
+dest = os.path.join(dest_dir, "entry.png")
+shutil.copyfile(SRC, dest)
+print("wrote", dest)

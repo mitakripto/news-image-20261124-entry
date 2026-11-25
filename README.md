@@ -1,36 +1,51 @@
-# One Page of World News — Tuesday 24 November 2026
+# The World in One Day — Tuesday 24 November 2026
 
-My entry for the make.fun bounty
-[news-image-20261124](https://make.fun/bounty/news-image-20261124):
-the whole of 24 November 2026's world news, summed up in a single image.
+A single 1024×1024 front page summing up Tuesday 24 November 2026 in
+60 stories across 7 regions, drawn as a cream-paper broadsheet in an
+Orwell-1984 × Bioshock art-deco register: deep teal and gold, propaganda
+red, serif display type.
 
-The page is a broadsheet drawn in a George Orwell 1984 poster register
-crossed with Bioshock art deco — deep-sea teal and gold, propaganda red,
-numbered stories, heavy rules, one small watching eye. It carries 60
-stories from 7 regions, each one reported on 24 November 2026 — three
-illustrated leads, ten illustrated cards, and 47 numbered briefs.
-Leading the page: a US jury finding Huawei guilty of trade secrets and
-bank fraud, Iran's claim that four tankers hit mines in the Strait of
-Hormuz, and Ukraine acknowledging strikes on Russian ships in the Gulf
-of Finland and off Libya.
+## What's on the page
 
-Every story is colour-coded by continent. A bar under the masthead gives
-each region's count, every story's number badge wears its region's
-colour, and the pins on the dotted world map match. Every drawn story
-carries a status tag — CONFIRMED, REPORTED or CLAIM, with a legend —
-a source line, and its own small illustration with the story's number
-or verdict set large; the Huawei lead is drawn as scales of justice
-with the 10-of-12 verdict. A THE DAY IN UTC timeline strip runs under
-the stats. A DATE CHECK box names the near-misses deliberately left
-out — the ICJ Myanmar ruling (Thursday 19 Nov), the 'El Chapo Isidro'
-capture (Friday 20 Nov), the COP31 collapse (Sunday 22 Nov), the
-Sparta II / Benghazi strike (Sunday 22 Nov), the Shenzhou-24 launch
-(Wednesday 25 Nov) and Monday's Huang reinstatement — and the page
-states Tuesday's news only: the Asian market follow-through (not
-Monday's Nasdaq +6.51%), the Cikande toll as "26 body bags recovered",
-and the Shenzhou-24 crew unveiling, not its launch.
+- **3 hero stories** — the US jury finding Huawei guilty on 10 counts,
+  Iran's claim of four tankers hit by mines in the Strait of Hormuz, and
+  Ukraine acknowledging strikes on Russian ships off Finland and Libya.
+- **10 cards** — Asian markets and Bitcoin, the CAS ruling restoring
+  Senegal as Africa Cup champions, Champions League Matchday 5, the Houthi
+  drone on Riyadh's PIF tower, the Cikande factory fire toll, 25 hostages
+  in Cartagena, Saudi strikes in Yemen, the Russian drone over Poland,
+  the Shenzhou-24 crew unveiling, and the US blacklisting of Megaspeed.
+- **47 one-line briefs** (stories 14–60), numbered to match the cards and
+  the map pins, each colour-coded by continent.
+- **A six-number stats strip** (25 hostages in Cartagena, 26 body bags at
+  Cikande, 4 tankers in Hormuz, 11 wounded in Riyadh, 175 migrants missing
+  off Dakar, Bitcoin at $60,406), a **continent bar with story counts**,
+  a **UTC timeline** running 00:00 to 20:41, and a **dotted world map**
+  with numbered pins for stories 1–13.
+- **A red DATE CHECK box** listing the near-miss events deliberately left
+  out, and a **tag legend**: CONFIRMED means verified by two or more
+  outlets, REPORTED means carried by the day's wires, CLAIM means one
+  side's account, not independently confirmed.
 
-How it is built: `draw.py` renders the 1024×1024 page with Pillow. The
-render is deterministic — fixed fonts, a fixed layout, no randomness, no
-network — and writes `entry.png`. `main.py` copies that file to the
-grader's output, so both runs hand over identical bytes.
+## Date discipline
+
+Every story happened, or was first reported, on Tuesday 24 November 2026.
+The traps are handled in the open on the page: the Nasdaq +6.51% surge was
+Monday's close, not Tuesday's move; the Shenzhou-24 item is the Tuesday
+crew unveiling, not Wednesday's launch; the Cikande figure is "26 body
+bags recovered"; the Cartagena hostage count is 25, the president's figure;
+and the Hormuz hero is tagged CLAIM because the mine claims are
+unconfirmed.
+
+## How it was built
+
+- `python3 draw.py` renders `entry.png` (1024×1024, under 1 MiB).
+- `python3 main.py [output-dir]` copies `entry.png` to the grader output.
+- The drawing uses Pillow only — no network, no randomness, no external
+  assets — so two runs produce byte-identical output.
+
+## Sources
+
+dailysummaryof.com/world/2026-11-24, horizonapp.link, Just Security Early
+Edition, UEFA, CAS, Reuters, Xinhua, CoinDesk. Press time 01:30 UTC,
+Wednesday 25 November 2026.
